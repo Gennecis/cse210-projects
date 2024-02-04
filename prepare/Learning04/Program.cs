@@ -5,13 +5,56 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Console.WriteLine("Hello Learning04 World!");
+        Console.WriteLine("Welcome to the Mindfulness Program!");
 
-        Assignment assignment1 = new Assignment("Colt", "Logarithm");
-        // Console.WriteLine(assignment1.Getsummary());
-        mathAssignment assignment2 = new mathAssignment("Colt", "logarithm", "8.5", "9-15");
-        // Console.WriteLine(assignment2.GetHomeworkList());
-        WritingAssignment assignment3 = new WritingAssignment("Nyma", "African History", "The Slave Trade");
-        Console.WriteLine(assignment3.Getwritinginformation());
+        while (true)
+        {
+            Console.WriteLine("\nMenu:");
+            Console.WriteLine("1. Breathing Activity");
+            Console.WriteLine("2. Reflection Activity");
+            Console.WriteLine("3. Listing Activity");
+            Console.WriteLine("4. Quit");
+
+            Console.Write("Enter your choice (1-4): ");
+            string choice = Console.ReadLine();
+
+            if (choice == "1")
+            {
+                MindfulnessActivity activity = new BreathingActivity();
+                GetUserDurationAndStartActivity(activity);
+            }
+            else if (choice == "2")
+            {
+                MindfulnessActivity activity = new ReflectionActivity();
+                GetUserDurationAndStartActivity(activity);
+            }
+            else if (choice == "3")
+            {
+                MindfulnessActivity activity = new ListingActivity();
+                GetUserDurationAndStartActivity(activity);
+            }
+            else if (choice == "4")
+            {
+                Console.WriteLine("Goodbye!");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Please enter a number between 1 and 4.");
+            }
+        }
+    }
+
+    static void GetUserDurationAndStartActivity(MindfulnessActivity activity)
+    {
+        Console.Write("Enter the duration in seconds: ");
+        if (int.TryParse(Console.ReadLine(), out int duration))
+        {
+            activity.StartActivity(duration);
+        }
+        else
+        {
+            Console.WriteLine("Invalid input. Please enter a valid number.");
+        }
     }
 }
